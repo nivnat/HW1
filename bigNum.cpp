@@ -2,10 +2,10 @@
 // Created by Ari Trachtenberg on 1/30/17.
 //
 
+#include <sstream>
 #include "bigNum.h"
 
 // IMPLEMENTATION
-#include "bigNum.h"
 
 bigNum::bigNum(string num) {
     bool leading = true; // used to ignore leading zeroes
@@ -17,6 +17,12 @@ bigNum::bigNum(string num) {
             digits.insert(digits.begin(), num[ii] - '0');
         }
 }
+
+bigNum::bigNum(unsigned int num) {
+    stringstream ss; ss<<num;
+    *this=bigNum(ss.str());
+}
+
 
 bigNum::bigNum(const bigNum& otherNum):digits(otherNum.digits) {
 }

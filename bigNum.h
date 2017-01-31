@@ -20,6 +20,12 @@ class bigNum {
 public:
 
     // CONSTRUCTORS
+    
+    /**
+     * Constructs a bigNum from a given non-negative int
+     */
+    bigNum(unsigned int num);
+    
     /**
      * Constructs a bigNum from a given string.
      * @param num contains only characters 0-9 and represents a positive integer >= 0
