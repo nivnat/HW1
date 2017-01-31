@@ -19,6 +19,7 @@ class bigNum {
 
 public:
 
+    // CONSTRUCTORS
     /**
      * Constructs a bigNum from a given string.
      * @param num contains only characters 0-9 and represents a positive integer >= 0
@@ -30,6 +31,7 @@ public:
      */
     bigNum(const bigNum& otherNum);
 
+    // INFORMATIONAL
     /**
      * @return true iff this bigNum is exactly numerically equal to otherNum
      */
@@ -49,7 +51,18 @@ public:
     bigNum& operator=(const bigNum& otherNum);
 
     /**
-     * Arithmetic assignment operators.
+     * @return the [index]-th least-significant digit of the number
+     */
+    int operator[](size_t index) const { return digits.at(index); }
+    
+    /**
+     * 
+     * @return The number of significant digits in the number
+     */
+    size_t numDigits() const { return digits.size(); }
+    
+    /**
+     * ARITHMETIC ASSIGNMENT OPERATORS
      */
     bigNum& operator+=(const bigNum& addor);
     bigNum& operator*=(const int cc);
