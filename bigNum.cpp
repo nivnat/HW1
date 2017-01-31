@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <memory>
 #include "bigNum.h"
 
 // IMPLEMENTATION
@@ -34,7 +35,7 @@ bigNum& bigNum::operator=(const bigNum& otherNum) {
 
 bigNum& bigNum::operator+=(const bigNum& addor) {
     bigNum first, second; // second always has at least as many digits as first
-    unique_ptr<bigNum> result(new bigNum("0"));
+    auto_ptr<bigNum> result(new bigNum("0"));
     if (digits.size() > addor.digits.size()) {
         first = addor;
         second = *this;
@@ -73,7 +74,7 @@ bigNum& bigNum::operator+=(const bigNum& addor) {
 bigNum &bigNum::operator*=(const int cc) {
     // multiplies by small number cc
     int carry = 0;
-    unique_ptr<bigNum> result(new bigNum());
+    auto_ptr<bigNum> result(new bigNum());
     
     for (int ii = 0; ii < digits.size(); ii++) {
         int prod = digits[ii] * cc + carry;
@@ -94,7 +95,7 @@ bigNum &bigNum::operator*=(const int cc) {
 }
 
 bigNum &bigNum::operator*=(const bigNum& multiplicator) {
-    unique_ptr<bigNum> sum(new bigNum());
+    auto_ptr<bigNum> sum(new bigNum());
     for (int ii = 0; ii < multiplicator.digits.size(); ii++) {
         bigNum smallProd = *this * multiplicator.digits[ii];
         smallProd << ii;
@@ -106,7 +107,7 @@ bigNum &bigNum::operator*=(const bigNum& multiplicator) {
 
 bigNum &bigNum::operator/=(const bigNum& divisor) {
     // pretty naive algorithm that is easy to implement
-    unique_ptr<bigNum> guess(new bigNum());
+    auto_ptr<bigNum> guess(new bigNum());
     for (int ii = digits.size() - 1; ii >= 0; ii--) {
         int dig;
         bigNum trial("");
